@@ -1,0 +1,55 @@
+@import './variables.scss';
+
+.login-form{
+    width:450px;
+    margin: auto;
+    button{
+        width: 100%;
+    }
+  
+    padding: 60px;
+    border: 1px;
+    box-shadow: -25px -54px 131px -55px #7c7d7e
+}
+
+.form-label{
+    font-weight: 600;
+}
+
+.validation-error{
+    color: $error-message-color;
+    font-weight: 500;
+    margin: 4px;
+}
+
+.form-control{
+    color:#fff !important;
+    background: #474350;
+    box-shadow: inset -11px 5px 9px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    font-size: 12px;
+    &:focus{
+        background: #474350;
+    }
+}
+
+.custom-button{
+    border: none;
+    background-color:$theme-color-dark;
+    border-radius: 5px;
+    padding: 10px;
+    color:#fff;
+    font-weight: 600;
+
+  }
+
+@media (max-width: 866px) { 
+    .login-form{
+        width:90%;
+        margin-top: 20%;
+    }
+    .landing-circle{
+        margin-top: 20% !important;
+
+    }
+}

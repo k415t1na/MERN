@@ -1,0 +1,82 @@
+@import './variables.scss';
+
+
+body {
+  margin: 0;
+  font-family: 'Epilogue', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.float-right{
+  float: right;
+  margin: auto;
+}
+
+.menu-header{
+  color: $theme-color-dark;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.success-background{
+  background-color: $success-message-color !important;
+}
+
+.error-background{
+  background-color: $error-message-color !important;
+}
+
+.btn{
+  padding: 20px !important;
+  padding-top: 4px !important;
+  padding-bottom: 3px !important;
+  border-radius: 50px;
+  margin: 2px !important;
+}
+
+.btn-dark{
+  color: #fff !important;
+}
+
+.btn-danger{
+  color: #fff !important;
+}
+
+.btn-outline-light{
+  color: #fff !important;
+  &:hover{
+    color: rgb(71, 67, 80) !important;;
+  }
+}
+
+.btn-warning{
+  background-color: #FFA62B !important;
+}
+
+.btn-info{
+  background-color: #2C8C99;
+    border: 0;
+    color: #fff !important;
+  &:hover{
+    background-color: #EAEBEDC4;
+    border: 0;
+  }
+}
+
+.text-warning{
+  color: #FFA62B !important;
+}
+
+.bg-dark{
+  background-color: rgb(71, 67, 80) !important;
+}
+
+.navbar{
+  background-color: rgba(0,0,0,0) !important;
+}

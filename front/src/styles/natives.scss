@@ -1,0 +1,39 @@
+@import './variables.scss';
+
+
+@keyframes alert-animation {
+    0% {bottom:0}
+    50% {bottom:50px}
+    70% {bottom:10px}
+    100% {bottom:30px}
+}
+
+@mixin system-message($color){
+    border-radius: 8px;
+    background-color: $color;
+    height:50px;
+    border:none;
+    color: #fff;
+    text-align: center;
+    line-height: 3;
+    bottom:30px;
+    position: fixed;
+    width: 300px;
+    animation: alert-animation 1s;
+}
+
+.success-badge{
+    background-color: $success-message-color;
+    padding: 4px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.success-system-message{
+    @include system-message($success-message-color);
+}
+
+.error-system-message{
+    @include system-message($error-message-color);
+}

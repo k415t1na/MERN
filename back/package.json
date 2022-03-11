@@ -1,0 +1,41 @@
+{
+  "name": "jobmanagement",
+  "version": "1.0.0",
+  "description": "job management server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "kristina",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.9",
+    "mongoose-type-email": "^1.1.2",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.3",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.12"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "directories": {
+    "test": "tests"
+  }
+}

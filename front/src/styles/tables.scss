@@ -1,0 +1,40 @@
+@import './variables.scss';
+
+.table-div{
+    // overflow: scroll;
+    margin: auto;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.custom-table{
+    margin: auto;
+    min-width: 600px;
+    thead{
+        font-weight: 600;
+        background-color: #fff;
+        overflow: hidden;
+        td{
+            color: black;
+            padding: 10px;
+        }
+    }
+        td{
+            padding: 4px;
+            padding-top: 7px;
+            border-bottom: 1px solid #fff;
+            padding-right: 10px;
+            color: #fff;
+        }
+}
+
+@media (max-width: 866px) { 
+   .table-div{
+       width: 100%;
+   }
+   .custom-table{
+       min-width: 100px;
+       width: 100%;
+   }
+}
+

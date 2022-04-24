@@ -4,6 +4,8 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import useJobDetails from '../../../../customHooks/JobHooks/useJobDetail';
 import usePunchIn from '../../../../customHooks/PunchHook/usePunchIn';
 import usePunchOut from '../../../../customHooks/PunchHook/usePunchOut';
+import { CSVLink, CSVDownload } from "react-csv";
+
 
 const JobDetail = () => {
     const history = useHistory()
@@ -12,6 +14,7 @@ const JobDetail = () => {
     const { mutate: do_punch_in, isLoading: punching_in, isSuccess: punched_in} = usePunchIn()
     const { mutate: do_punch_out, isLoading: punching_out, isSuccess: punched_out} = usePunchOut()
     const [ total_hours, set_total_hours] = useState(0)
+
 
     useEffect(()=>{
         if (job_detail){
@@ -22,7 +25,6 @@ const JobDetail = () => {
                     : moment().diff(moment(punch.punched_in), 'hours', true).toFixed(2))
                 hours += curr_hours
             })
-            console.log(hours);
             set_total_hours(hours)
         }
     },[job_detail])
@@ -39,8 +41,25 @@ const JobDetail = () => {
         e.preventDefault()
         do_punch_out(job_id)
     }
-
     
+    let csv_data = [['id', 'clockin', 'clockout', 'total time']];
+    if(job_detail){
+        job_detail.punches.map((punch, index) => {
+            let arr = []
+            arr.push(punch.id);
+            arr.push(moment(punch.punched_in).calendar());
+            arr.push(punch.punched_out ? moment(punch.punched_out).calendar() : 'Active as of ' + moment().calendar());
+            
+            arr.push(punch.punched_out 
+                    ? moment(punch.punched_out).diff(moment(punch.punched_in), 'hours', true).toFixed(2)
+                    : moment().diff(moment(punch.punched_in), 'hours', true).toFixed(2)
+                )
+            csv_data.push(arr)
+        })
+
+        csv_data.push([]);
+        csv_data.push(['Total hours:', '', '', total_hours]);
+    }
 
     return (
 
@@ -108,10 +127,16 @@ const JobDetail = () => {
                 </tr>
                 </tbody>
             </table>
-
-           
-
+                <br/>
+                <CSVLink data={csv_data} filename={"punches.csv"}>
+                    <button className='btn btn-success'>
+                        Export as CSV
+                    </button>
+                </CSVLink>;
+                
             </div>
+
+            
             
         </div>
     )

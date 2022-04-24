@@ -4,7 +4,7 @@ const { request, response } = require('express')
 const Job = require('../models/job')
 const Punch = require('../models/punch')
 const { get_user_from_request } = require('./utils')
-
+const moment = require('moment')
 
 jobRouter.post('/api/jobs', async (request, response) => {
 
@@ -24,14 +24,37 @@ jobRouter.post('/api/jobs', async (request, response) => {
   response.status(201).json({ message: 'ok' })
 })
 
-jobRouter.get('/api/jobs', async (request, response) => {
+const get_total_hours = async (id) => {
+  let hours = 0
+  // Get all punches and calculate sum of hours
+  const punches = await Punch.find({ job:id })
 
+  punches.forEach(punch => {
+    const curr_hours = Number(punch.updatedAt
+      ? moment(punch.updatedAt).diff(moment(punch.createdAt), 'hours', true).toFixed(2)
+      : moment().diff(moment(punch.updatedAt), 'hours', true).toFixed(2))
+
+    console.log(moment(punch.updatedAt))
+    console.log(moment(punch.createdAt))
+    hours += curr_hours
+  })
+
+  return hours
+}
+
+jobRouter.get('/api/jobs', async (request, response) => {
   const curr_user = await get_user_from_request(request)
   if (!curr_user) return response.status(401).json({ error:'missing or invalid token' })
-
   const allJobs = await Job.find({ user: curr_user })
-
-  response.status(200).json(allJobs)
+  const jobs = []
+  for(let i =0; i<allJobs.length; i++){
+    const total_hours = await get_total_hours(allJobs[i]);
+    jobs.push({
+      ...allJobs[i]._doc,
+      total_hours
+    })
+  }
+  response.status(200).json(jobs)
 })
 
 jobRouter.get('/api/jobs/:job_id', async (request, response) => {

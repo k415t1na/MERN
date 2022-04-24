@@ -18,6 +18,7 @@ import AddJob from './components/LoggedIn/Jobs/Job/AddJob';
 import JobDetail from './components/LoggedIn/Jobs/Job/JobDetail';
 import { Landing } from './components/Other/Landing';
 import { useEffect } from 'react';
+import UserList from './components/LoggedIn/Admin/UserList';
 
 
 const NeedToAuthenticateRoute = ({ path, component}) => {
@@ -65,6 +66,7 @@ function App() {
         <NeedToAuthenticateRoute exact path={'/jobs'} component={JobsPage} />
         <NeedToAuthenticateRoute exact path={'/jobs/add'} component={AddJob} />
         <NeedToAuthenticateRoute exact path={'/jobs/:id'} component={JobDetail} />
+        <NeedToAuthenticateRoute exact path={'/admin/users'} component={UserList} />
       </Switch>
       </div>
     </div>

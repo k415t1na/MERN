@@ -12,7 +12,6 @@ const TopNav = () => {
       document.body.classList.remove('bg-dark');
       document.getElementById('navbar-logo')?.classList.remove('text-white');
     }
-
     return (
        <div className='nav-container'>
        <nav className="navbar navbar-expand-lg navbar-light bg-white">

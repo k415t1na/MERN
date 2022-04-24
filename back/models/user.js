@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     type:mongoose.SchemaTypes.Email,
     unique:true,
   },
+  is_admin: Boolean,
   passwordHash: String,
   jobs: [
     {

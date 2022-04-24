@@ -30,7 +30,7 @@ loginRouter.post('/api/login', async (request, response) => {
 
   response
     .status(200)
-    .send({ token, email: user.email, first_name: user.first_name })
+    .send({ token, email: user.email, first_name: user.first_name, is_admin: user.is_admin })
 
 })
 
